@@ -3,6 +3,13 @@ spring:
     name: authserver
 
 eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    hostname: ${CF_INSTANCE_IP:192.168.109.2}
+    nonSecurePort: ${CF_INSTANCE_PORT:${PORT:${server.port:8800}}}
   client:
     serviceUrl:
       defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
+
+server:
+  port: 8800
